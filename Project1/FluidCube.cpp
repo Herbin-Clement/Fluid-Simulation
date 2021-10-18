@@ -96,5 +96,4 @@ void FluidCube::render(sf::RenderWindow* window)
 		}
 	}
 	moy = moy / (this->size * this->size);
-	std::cout << "moy : " << moy << " , max = " << max << std::endl;
 }

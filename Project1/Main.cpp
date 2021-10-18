@@ -65,7 +65,7 @@ int main()
 		fluid.render(&window);
 
 		window.display();
-		std::cout << "step " << frame++ << " -------------------------------------------------------------" << std::endl;
+		std::cout << "frame " << frame++ << " -------------------------------------------------------------" << std::endl;
 	}
 
 	return 0;
