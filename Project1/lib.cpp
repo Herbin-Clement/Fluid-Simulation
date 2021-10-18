@@ -94,18 +94,6 @@ void advect(int b, float* d, float* d0, float* velocX, float* velocY, float dt, 
 	int i, j;
 
 	int index;
-	//for (j = 0; j < N; j++)
-	//{
-	//	for (i = 0; i < N; i++)
-	//	{
-	//		index = IX(i, j);
-	//		std::cout << "index : " << index << std::endl;;
-	//		std::cout << "d : (" << i << ", " << j << ") : " << d[index] << std::endl;
-	//		std::cout << "d0 : (" << i << ", " << j << ") : " << d0[index] << std::endl;
-	//		std::cout << "velocX : (" << i << ", " << j << ") : " << velocX[index] << std::endl;
-	//		std::cout << "velocY : (" << i << ", " << j << ") : " << velocY[index] << std::endl;
-	//	}
-	//}
 	for (j = 1, jfloat = 1; j < N - 1; j++, jfloat++) {
 		for (i = 1, ifloat = 1; i < N - 1; i++, ifloat++) {
 			tmp1 = dtx * velocX[IX(i, j)];
@@ -131,11 +119,6 @@ void advect(int b, float* d, float* d0, float* velocX, float* velocY, float dt, 
 			int i1i = i1;
 			int j0i = j0;
 			int j1i = j1;
-
-			//std::cout << "avant : " << d[IX(i, j)] << std::endl;
-			//std::cout << "s0 : " << s0 << " s1 : " << s1 << " t0 : " << t0 << " t1 : " << t1 << std::endl;
-			//std::cout << " i0i : " << i0i << " i1i : " << i1i << " j0i : " << j0i << " j1i : " << j1i << std::endl;
-			//std::cout << "apres : " << d[IX(i, j)] << std::endl;
 			d[IX(i, j)] =
 				s0 * (t0 * d0[IX(i0i, j0i)] + t1 * d0[IX(i0i, j1i)]) +
 				s1 * (t0 * d0[IX(i1i, j0i)] + t1 * d0[IX(i1i, j1i)]);
