@@ -132,3 +132,8 @@ float constraint(float f, float min, float max)
 	if (f < min) return min;
 	return f > max ? max : f;
 }
+
+float degToRad(float d)
+{
+	return d * M_PI / 180;
+}

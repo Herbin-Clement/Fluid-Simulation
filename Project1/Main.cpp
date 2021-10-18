@@ -1,6 +1,6 @@
 #include <iostream> 
 #include <SFML/Graphics.hpp>
-
+#include <cmath>
 #include "lib.h"
 #include "FluidCube.h"
 
@@ -10,9 +10,17 @@ int main()
 
 	sf::Event event;
 
-	int frame = 1;
+	float theta;
+	float coefficient;
+	int frame;
+	float vx;
+	float vy;
+
 
 	FluidCube fluid = FluidCube(S, 2.0f, 0.1f, 0.000001f);
+	theta = 0.0f;
+	coefficient = 10000.0f;
+	frame = 1;
 
 	while (window.isOpen())
 	{
@@ -27,7 +35,7 @@ int main()
 		window.clear();
 		if (event.type == sf::Event::MouseButtonPressed)
 		{
-			if (event.mouseButton.button == sf::Mouse::Right)
+			if (event.mouseButton.button == sf::Mouse::Left)
 			{
 				fluid.addDensity((event.mouseButton.x * S/ W), (event.mouseButton.y * S / H), 100.0f);
 			}
@@ -36,15 +44,27 @@ int main()
 				fluid.addVelocity((event.mouseButton.x * S / W), (event.mouseButton.y * S / H), 0.0f, 100.0f);
 			}
 		}
+		if (event.type == sf::Event::KeyPressed)
+		{
+			if (event.key.code == sf::Keyboard::Left)
+			{
+				theta -= degToRad(10.0f);
+			}
+			if (event.key.code == sf::Keyboard::Right)
+			{
+				theta += degToRad(10.0f);
+			}
+		}
 
-		fluid.addDensity((int)S / 2, (int)S / 2, 100.0f);
-		fluid.addVelocity((int) S / 2 + 1,(int) S / 2, 10000.0f, 0.0f);
 
+		vx = cos(theta) * coefficient;
+		vy = sin(theta) * coefficient;
+		fluid.addDensity((int)S / 2, (int)S / 2, 150.0f);
+		fluid.addVelocity((int) S / 2, (int) S / 2, vx, vy);
 		fluid.step();
 		fluid.render(&window);
 
 		window.display();
-
 		std::cout << "step " << frame++ << " -------------------------------------------------------------" << std::endl;
 	}
 
