@@ -2,7 +2,7 @@
 #define LIB_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#define S 150
+#define S 100
 #define W 600
 #define H 600
 #define IX(x, y) (x + (y) * S)

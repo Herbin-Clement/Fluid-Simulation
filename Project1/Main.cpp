@@ -10,8 +10,9 @@ int main()
 
 	sf::Event event;
 
-	int s = 1;
-	FluidCube fluid = FluidCube(S, 10.0f, 0.1f, 0.000001f);
+	int frame = 1;
+
+	FluidCube fluid = FluidCube(S, 2.0f, 0.1f, 0.000001f);
 
 	while (window.isOpen())
 	{
@@ -28,20 +29,23 @@ int main()
 		{
 			if (event.mouseButton.button == sf::Mouse::Right)
 			{
-				fluid.addDensity((event.mouseButton.x * S/ W), (event.mouseButton.y * S / H), 10000.0f);
+				fluid.addDensity((event.mouseButton.x * S/ W), (event.mouseButton.y * S / H), 100.0f);
 			}
 			else
 			{
-				fluid.addVelocity((event.mouseButton.x * S / W), (event.mouseButton.y * S / H), 0.0f, 100000.0f);
+				fluid.addVelocity((event.mouseButton.x * S / W), (event.mouseButton.y * S / H), 0.0f, 100.0f);
 			}
 		}
 
-		fluid.addDensity((int)S / 2, (int)S / 2, 10000.0f);
-		fluid.addVelocity((int) S / 2 + 1,(int) S / 2, 100000.0f, 0.0f);
+		fluid.addDensity((int)S / 2, (int)S / 2, 100.0f);
+		fluid.addVelocity((int) S / 2 + 1,(int) S / 2, 10000.0f, 0.0f);
+
 		fluid.step();
 		fluid.render(&window);
-		//std::cout << "step " << s++ << " -------------------------------------------------------------" << std::endl;
+
 		window.display();
+
+		std::cout << "step " << frame++ << " -------------------------------------------------------------" << std::endl;
 	}
 
 	return 0;

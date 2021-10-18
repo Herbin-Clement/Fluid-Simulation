@@ -89,7 +89,7 @@ void FluidCube::render(sf::RenderWindow* window)
 			d = density[IX(i, j)];
 			moy += d;
 			if (d > max) max = d;
-			c = (constraint(d, 0, 5000) / 5000) * 255;
+			c = (constraint(d, 0, 255) / 255) * 255;
 			r[IX(i, j)].setFillColor(sf::Color(c, c, c));
 			rect = r[IX(i, j)];
 			(*window).draw(rect);
